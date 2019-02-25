@@ -1,0 +1,31 @@
+{
+  "name": "alarm-clock-fsm",
+  "version": "1.0.0",
+  "description": "simple js alarm-clock, the solution uses finite state machine paradigm",
+  "main": "babel.config.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.3.3",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
+    "chai": "^4.2.0",
+    "mocha": "^6.0.1"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/mocha --require @babel/register"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maxsmrnv/alarm-clock-fsm.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maxsmrnv/alarm-clock-fsm/issues"
+  },
+  "homepage": "https://github.com/maxsmrnv/alarm-clock-fsm#readme"
+}
