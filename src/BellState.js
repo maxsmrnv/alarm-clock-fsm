@@ -1,3 +1,3 @@
-class BellState {
-    
+export default class BellState {
+
 }
