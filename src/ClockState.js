@@ -2,15 +2,28 @@ import State from './State'
 
 export default class ClockState extends State {
 
-    constructor() {
+    constructor(context) {
         super()
         this.mode = 'clock';
-
+        this.context = context
     }
 
-    tick() {
-        // if (this.clock.isAlarmTime()) {
-            // this.clock.setState(BellState);
-        // }
+
+    clickH() {
+        if (this.context.clockHrs == 23) {
+            this.context.clockHrs = 0
+        } else {
+            this.context.clockHrs += 1
+        }
     }
+
+    clickM() {
+        if (this.context.clockMin == 59) {
+            this.context.clockMin = 0
+        } else {
+            this.context.clockMin += 1
+        }
+    }
+
+
 }

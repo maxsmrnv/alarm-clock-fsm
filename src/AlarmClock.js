@@ -18,11 +18,11 @@ export default class AlarmClock {
     }
 
     clickMode() {
-
+        this.getCurrentMode() == 'clock' ? this.setState(AlarmState) : this.setState(ClockState)
     }
 
     longClickMode() {
-
+        this.alarmMode ? this.alarmMode = false : this.alarmMode = true
     }
 
     clickH() {
@@ -30,11 +30,11 @@ export default class AlarmClock {
     }
 
     clickM() {
-
+        this.state.clickM();
     }
 
     tick() {
-        this.clockMin+=1
+        this.clockMin += 1
 
     }
 
