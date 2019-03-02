@@ -1,29 +1,18 @@
-import State from './State'
+import State from './State';
+import AlarmState from './AlarmState';
 
 export default class ClockState extends State {
+  constructor(context) {
+    super('clock');
+    this.context = context;
+    this.nextStateClass = AlarmState;
+  }
 
-    constructor(context) {
-        super()
-        this.mode = 'clock';
-        this.context = context
-    }
+  clickH() {
+    this.context.clockMin = this.calculatePlusHour(this.context.clockMin);
+  }
 
-
-    clickH() {
-        if (this.context.clockHrs == 23) {
-            this.context.clockHrs = 0
-        } else {
-            this.context.clockHrs += 1
-        }
-    }
-
-    clickM() {
-        if (this.context.clockMin == 59) {
-            this.context.clockMin = 0
-        } else {
-            this.context.clockMin += 1
-        }
-    }
-
-
+  clickM() {
+    this.context.clockMin = this.calculatePlusMin(this.context.clockMin);
+  }
 }

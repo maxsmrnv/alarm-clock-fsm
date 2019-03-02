@@ -1,25 +1,19 @@
-import State from './State'
+import State from './State';
+// eslint-disable-next-line import/no-cycle
+import ClockState from './ClockState';
 
 export default class AlarmState extends State {
-    constructor(context) {
-        super()
-        this.mode = 'alarm';
-        this.context = context
+  constructor(context) {
+    super('alarm');
+    this.context = context;
+    this.nextStateClass = ClockState;
+  }
 
-    }
-    clickH() {
-        if (this.context.alarmHrs == 23) {
-            this.context.alarmHrs = 0
-        } else {
-            this.context.alarmHrs += 1
-        }
-    }
+  clickH() {
+    this.context.alarmMin = this.calculatePlusHour(this.context.alarmMin);
+  }
 
-    clickM() {
-        if (this.context.alarmMin == 59) {
-            this.context.alarmMin = 0
-        } else {
-            this.context.alarmMin += 1
-        }
-    }
+  clickM() {
+    this.context.alarmMin = this.calculatePlusMin(this.context.alarmMin);
+  }
 }

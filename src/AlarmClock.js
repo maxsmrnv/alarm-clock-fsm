@@ -1,70 +1,66 @@
 import ClockState from './ClockState';
-import AlarmState from './AlarmState';
 import BellState from './BellState';
 
 export default class AlarmClock {
+  constructor() {
+    this.clockMin = 12 * 60;
+    this.alarmMin = 6 * 60;
+    this.alarmMode = false;
+    this.setState(ClockState);
+  }
 
-    constructor() {
-        this.clockHrs = 12;
-        this.clockMin = 0;
-        this.alarmHrs = 6;
-        this.alarmMin = 0;
-        this.alarmMode = false
-        this.setState(ClockState);
+  setState(Klass) {
+    this.state = new Klass(this);
+  }
+
+  clickMode() {
+    this.state.nextState();
+  }
+
+  longClickMode() {
+    this.alarmMode = !this.alarmMode;
+  }
+
+  clickH() {
+    this.state.clickH();
+  }
+
+  clickM() {
+    this.state.clickM();
+  }
+
+  tick() {
+    this.clockMin = (this.clockMin + 1) % (60 * 24);
+    if (this.isAlarmOn() && this.clockMin === this.alarmMin) {
+      this.setState(BellState);
     }
+  }
 
-    setState(Klass) {
-        this.state = new Klass(this);
-    }
+  isAlarmOn() {
+    return this.alarmMode;
+  }
 
-    clickMode() {
-        this.getCurrentMode() == 'clock' ? this.setState(AlarmState) : this.setState(ClockState)
-    }
+  isAlarmTime() {
+    return this.clockMin === this.alarmMin;
+  }
 
-    longClickMode() {
-        this.alarmMode ? this.alarmMode = false : this.alarmMode = true
-    }
+  minutes() {
+    return this.clockMin % 60;
+  }
 
-    clickH() {
-        this.state.clickH();
-    }
+  hours() {
+    return (this.clockMin - (this.clockMin % 60)) / 60;
+  }
 
-    clickM() {
-        this.state.clickM();
-    }
+  alarmMinutes() {
+    return this.alarmMin % 60;
+  }
 
-    tick() {
-        this.clockMin += 1
+  alarmHours() {
+    return (this.alarmMin - (this.alarmMin % 60)) / 60;
+  }
 
-    }
-
-    isAlarmOn() {
-        return this.alarmMode;
-    }
-
-    isAlarmTime() {
-
-    }
-
-    minutes() {
-        return this.clockMin;
-    }
-
-    hours() {
-        return this.clockHrs;
-    }
-
-    alarmMinutes() {
-        return this.alarmMin;
-
-    }
-
-    alarmHours() {
-        return this.alarmHrs;
-    }
-
-    getCurrentMode() {
-        return this.state.mode;
-    }
-
+  getCurrentMode() {
+    return this.state.mode;
+  }
 }

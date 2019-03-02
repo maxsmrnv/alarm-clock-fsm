@@ -1,5 +1,4 @@
 # alarm-clock-fsm-practice
-*js alarm-clock, the solution uses finite state machine paradigm*
 #
 
 ## Реализуйте логику работы часов.
